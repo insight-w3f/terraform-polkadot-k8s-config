@@ -47,9 +47,7 @@ No issue is creating limit on this module.
 
 | Name | Version |
 |------|---------|
-| aws | n/a |
 | helm | n/a |
-| kubernetes | n/a |
 | template | n/a |
 
 ## Inputs
