@@ -57,9 +57,7 @@ No issue is creating limit on this module.
 | all\_enabled | Bool to enable all services | `bool` | `true` | no |
 | consul\_enabled | Bool to enable consul | `bool` | `true` | no |
 | elasticsearch\_enabled | Bool to enable elasticsearch | `bool` | `true` | no |
-| elb\_host\_name | n/a | `any` | n/a | yes |
 | prometheus\_enabled | Bool to enable prometheus | `bool` | `true` | no |
-| root\_domain\_name | n/a | `any` | n/a | yes |
 
 ## Outputs
 

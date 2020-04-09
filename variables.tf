@@ -1,7 +1,3 @@
-variable "elb_host_name" {}
-variable "root_domain_name" {}
-
-
 
 ######
 # svcs
