@@ -7,16 +7,22 @@
 
 WIP - Do not use 
 
-- [ ] Tie in the elb for monitoring endpoints 
-- [ ] Parameterize consul configs to tie into global vars 
+- [ ] Remove provider specifics
+    - [ ] Tie in the elb for monitoring endpoints 
+    - [ ] Parameterize consul configs to tie into global vars 
 
-- Tests 
+- [ ] Tests 
     - [ ] AWS
     - [ ] Azure
     - [ ] GCP
          
 - [ ] Ouptuts 
 - [ ] Tons of other stuff
+
+### Files that need generalization 
+
+- es.yml
+- consul.yml
 
 ## Terraform Versions
 

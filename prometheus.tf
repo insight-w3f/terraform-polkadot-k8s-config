@@ -65,6 +65,7 @@ resource "helm_release" "ingress" {
   }
 }
 
+// TODO: Move to aws k8s
 resource "aws_route53_record" "prom-record" {
   count = var.prometheus_enabled && local.dns_enabled ? 1 : 0
 
