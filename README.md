@@ -8,7 +8,6 @@
 WIP - Do not use 
 
 - [ ] Remove provider specifics
-    - [ ] Tie in the elb for monitoring endpoints 
     - [ ] Parameterize consul configs to tie into global vars 
 
 - [ ] Tests 
