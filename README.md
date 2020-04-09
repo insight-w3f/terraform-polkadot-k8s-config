@@ -5,7 +5,18 @@
 
 ## Features
 
-This module...
+WIP - Do not use 
+
+- [ ] Tie in the elb for monitoring endpoints 
+- [ ] Parameterize consul configs to tie into global vars 
+
+- Tests 
+    - [ ] AWS
+    - [ ] Azure
+    - [ ] GCP
+         
+- [ ] Ouptuts 
+- [ ] Tons of other stuff
 
 ## Terraform Versions
 
@@ -13,10 +24,9 @@ For Terraform v0.12.0+
 
 ## Usage
 
-```
+```hcl-terraform
 module "this" {
-    source = "github.com/insight-w3f/terraform-polkadot-k8s-config"
-
+  source = "github.com/insight-w3f/terraform-polkadot-k8s-config"
 }
 ```
 ## Examples
@@ -29,11 +39,23 @@ No issue is creating limit on this module.
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Providers
 
-No provider.
+| Name | Version |
+|------|---------|
+| aws | n/a |
+| helm | n/a |
+| kubernetes | n/a |
+| template | n/a |
 
 ## Inputs
 
-No input.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:-----:|
+| all\_enabled | Bool to enable all services | `bool` | `true` | no |
+| consul\_enabled | Bool to enable consul | `bool` | `true` | no |
+| elasticsearch\_enabled | Bool to enable elasticsearch | `bool` | `true` | no |
+| elb\_host\_name | n/a | `any` | n/a | yes |
+| prometheus\_enabled | Bool to enable prometheus | `bool` | `true` | no |
+| root\_domain\_name | n/a | `any` | n/a | yes |
 
 ## Outputs
 
