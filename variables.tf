@@ -26,3 +26,18 @@ variable "prometheus_enabled" {
   default     = true
 }
 
+variable "nginx_ingress_enabled" {
+  description = "Bool to enable nginx ingress"
+  type = bool
+  default = true
+}
+
+######
+# Consul
+######
+
+variable "region" {
+  description = "Region the cluster is in"
+  type = string
+  default = "us-east1"
+}
