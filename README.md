@@ -42,6 +42,10 @@ module "this" {
 No issue is creating limit on this module.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+No requirements.
+
 ## Providers
 
 | Name | Version |
@@ -52,11 +56,18 @@ No issue is creating limit on this module.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
+| alertmanager\_subdomain | The subdomain for AlertManager | `string` | `"alertmanager"` | no |
 | all\_enabled | Bool to enable all services | `bool` | `true` | no |
+| cloud\_platform | The cloud platform where the cluster is deployed | `string` | n/a | yes |
 | consul\_enabled | Bool to enable consul | `bool` | `true` | no |
 | elasticsearch\_enabled | Bool to enable elasticsearch | `bool` | `true` | no |
+| grafana\_subdomain | The subdomain for Grafana | `string` | `"grafana"` | no |
 | prometheus\_enabled | Bool to enable prometheus | `bool` | `true` | no |
+| prometheus\_subdomain | The subdomain for Prometheus | `string` | `"prometheus"` | no |
+| region | The region where the cluster is deployed | `string` | n/a | yes |
+| root\_domain\_name | The root domain name | `string` | n/a | yes |
+| slack\_api\_key | Your Slack API key to receive alerts | `string` | `""` | no |
 
 ## Outputs
 

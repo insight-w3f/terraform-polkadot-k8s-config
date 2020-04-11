@@ -32,12 +32,41 @@ variable "nginx_ingress_enabled" {
   default = true
 }
 
-######
-# Consul
-######
-
 variable "region" {
-  description = "Region the cluster is in"
-  type = string
-  default = "us-east1"
+  description = "The region where the cluster is deployed"
+  type        = string
+}
+
+variable "cloud_platform" {
+  description = "The cloud platform where the cluster is deployed"
+  type        = string
+}
+
+variable "slack_api_key" {
+  description = "Your Slack API key to receive alerts"
+  type        = string
+  default     = ""
+}
+
+variable "alertmanager_subdomain" {
+  description = "The subdomain for AlertManager"
+  type        = string
+  default     = "alertmanager"
+}
+
+variable "grafana_subdomain" {
+  description = "The subdomain for Grafana"
+  type        = string
+  default     = "grafana"
+}
+
+variable "prometheus_subdomain" {
+  description = "The subdomain for Prometheus"
+  type        = string
+  default     = "prometheus"
+}
+
+variable "root_domain_name" {
+  description = "The root domain name"
+  type        = string
 }
