@@ -2,7 +2,7 @@ alertmanager:
   config:
     global:
       resolve_timeout: 5m
-      slack_api_url: https://hooks.slack.com/services/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
+      slack_api_url: ${slack_api_key}
     route:
       group_by: ['job']
       group_wait: 30s
@@ -38,7 +38,7 @@ alertmanager:
               {{ end }}
       - name: 'null'
   alertmanagerSpec:
-    externalUrl: "http://alertman.us-east-1.aws.patchnotes.xyz"
+    externalUrl: "http://${alertmanager_subdomain}.${region}.${cloud_platform}.${root_domain_name}"
   ingress:
     annotations:
       ingress.kubernetes.io/rewrite-target: /
@@ -47,7 +47,7 @@ alertmanager:
       nginx.ingress.kubernetes.io/ssl-redirect: "false"
     enabled: true
     hosts:
-      - alertman.us-east-1.aws.patchnotes.xyz
+      - ${alertmanager_subdomain}.${region}.${cloud_platform}.${root_domain_name}
   service:
     type: NodePort
 
@@ -61,7 +61,7 @@ grafana:
       nginx.ingress.kubernetes.io/ssl-redirect: "false"
     enabled: true
     hosts:
-      - grafana.us-east-1.aws.patchnotes.xyz
+      - ${grafana_subdomain}.${region}.${cloud_platform}.${root_domain_name}
   service:
     type: NodePort
 
@@ -161,7 +161,7 @@ prometheus:
       nginx.ingress.kubernetes.io/ssl-redirect: "false"
     enabled: true
     hosts:
-      - prometheus.us-east-1.aws.patchnotes.xyz
+      - ${prometheus_subdomain}.${region}.${cloud_platform}.${root_domain_name}
   service:
     type: NodePort
   prometheusSpec:
@@ -173,7 +173,7 @@ prometheus:
           resources:
             requests:
               storage: 50Gi
-    externalUrl: http://prometheus.us-east-1.aws.patchnotes.xyz
+    externalUrl: "http://${prometheus_subdomain}.${region}.${cloud_platform}.${root_domain_name}"
     additionalScrapeConfigs:
       - job_name: consul
         metrics_path: /v1/agent/metrics
