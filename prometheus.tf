@@ -1,6 +1,6 @@
 data "template_file" "prometheus" {
   template = yamlencode(yamldecode(file("${path.module}/prometheus.yaml")))
-  vars {
+  vars = {
     region                 = var.region
     cloud_platform         = var.cloud_platform
     slack_api_key          = var.slack_api_key
