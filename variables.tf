@@ -26,6 +26,12 @@ variable "prometheus_enabled" {
   default     = true
 }
 
+variable "nginx_ingress_enabled" {
+  description = "Bool to enable nginx ingress"
+  type = bool
+  default = true
+}
+
 variable "region" {
   description = "The region where the cluster is deployed"
   type        = string
@@ -64,4 +70,3 @@ variable "root_domain_name" {
   description = "The root domain name"
   type        = string
 }
-
