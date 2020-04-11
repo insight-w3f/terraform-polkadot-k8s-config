@@ -5,8 +5,9 @@ data "template_file" "elasticsearch" {
 
 
 resource "helm_release" "elasticsearch" {
+  count = var.elasticsearch_enabled ? 1 : 0
   name       = "elasticsearch"
-  chart      = "elasticsearch"
+  chart      = "stable/elasticsearch"
   repository = data.helm_repository.stable.metadata[0].name
   namespace  = "kube-system"
 
