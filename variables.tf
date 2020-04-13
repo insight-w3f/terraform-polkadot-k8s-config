@@ -28,8 +28,8 @@ variable "prometheus_enabled" {
 
 variable "nginx_ingress_enabled" {
   description = "Bool to enable nginx ingress"
-  type = bool
-  default = true
+  type        = bool
+  default     = true
 }
 
 variable "external_dns_enabled" {
@@ -97,6 +97,12 @@ variable "google_project" {
 
 variable "google_service_account_key" {
   description = "Contents of the JSON file for the GCP service account"
+  type        = string
+  default     = ""
+}
+
+variable "do_token" {
+  description = "The DO API token"
   type        = string
   default     = ""
 }

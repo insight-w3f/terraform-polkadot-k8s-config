@@ -17,5 +17,8 @@ google:
   serviceAccountSecret: "gcp-credentials"
   serviceAccountSecretKey: "credentials"
 
+digitalocean:
+  apiToken: ${do_token}
+
 metrics:
   enabled: true

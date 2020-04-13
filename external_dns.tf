@@ -5,9 +5,10 @@ data "template_file" "external_dns" {
     domain               = "${var.region}.${var.cloud_platform}.polkadot.${var.root_domain_name}"
     region               = var.cloud_platform == "aws" ? var.region : ""
     zone_type            = var.cloud_platform == "aws" ? "public" : ""
-    provider             = var.cloud_platform == "gcp" ? "google" : var.cloud_platform
+    provider             = var.cloud_platform == "gcp" ? "google" : var.cloud_platform == "do" ? "digitalocean" : var.cloud_platform
     google_project       = var.cloud_platform == "gcp" ? var.google_project : ""
     azure_resource_group = var.cloud_platform == "azure" ? var.azure_resource_group : ""
+    do_token             = var.cloud_platform == "do" ? var.do_token : ""
   }
 }
 

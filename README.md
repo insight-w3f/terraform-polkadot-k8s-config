@@ -64,6 +64,7 @@ No requirements.
 | azure\_service\_principal\_key | Contents of the JSON file for the Azure service principal | `string` | `""` | no |
 | cloud\_platform | The cloud platform where the cluster is deployed | `string` | n/a | yes |
 | consul\_enabled | Bool to enable consul | `bool` | `true` | no |
+| do\_token | The DO API token | `string` | `""` | no |
 | elasticsearch\_enabled | Bool to enable elasticsearch | `bool` | `true` | no |
 | external\_dns\_enabled | Bool to enable external DNS controller | `bool` | `true` | no |
 | google\_project | Name of GCP project | `string` | `""` | no |
