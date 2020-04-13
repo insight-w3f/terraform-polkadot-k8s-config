@@ -8,7 +8,7 @@ data "template_file" "consul" {
 
 
 resource "helm_release" "consul" {
-  count = var.consul_enabled ? 1 : 0
+  count      = var.consul_enabled ? 1 : 0
   name       = "consul"
   chart      = "stable/consul"
   repository = data.helm_repository.stable.metadata[0].name

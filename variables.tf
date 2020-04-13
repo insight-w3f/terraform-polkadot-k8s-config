@@ -30,6 +30,7 @@ variable "nginx_ingress_enabled" {
   description = "Bool to enable nginx ingress"
   type = bool
   default = true
+}
 
 variable "external_dns_enabled" {
   description = "Bool to enable external DNS controller"

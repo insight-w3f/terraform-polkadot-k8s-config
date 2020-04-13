@@ -69,6 +69,7 @@ No requirements.
 | google\_project | Name of GCP project | `string` | `""` | no |
 | google\_service\_account\_key | Contents of the JSON file for the GCP service account | `string` | `""` | no |
 | grafana\_subdomain | The subdomain for Grafana | `string` | `"grafana"` | no |
+| nginx\_ingress\_enabled | Bool to enable nginx ingress | `bool` | `true` | no |
 | prometheus\_enabled | Bool to enable prometheus | `bool` | `true` | no |
 | prometheus\_subdomain | The subdomain for Prometheus | `string` | `"prometheus"` | no |
 | region | The region where the cluster is deployed | `string` | n/a | yes |

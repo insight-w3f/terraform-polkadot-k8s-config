@@ -1,2 +1,6 @@
 rbac:
-  create: "true"
+  create: true
+
+controller:
+  publishService:
+    enabled: true
