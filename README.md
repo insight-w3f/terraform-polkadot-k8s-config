@@ -51,6 +51,7 @@ No requirements.
 | Name | Version |
 |------|---------|
 | helm | n/a |
+| kubernetes | n/a |
 | template | n/a |
 
 ## Inputs
@@ -59,9 +60,14 @@ No requirements.
 |------|-------------|------|---------|:--------:|
 | alertmanager\_subdomain | The subdomain for AlertManager | `string` | `"alertmanager"` | no |
 | all\_enabled | Bool to enable all services | `bool` | `true` | no |
+| azure\_resource\_group | The Azure resource group | `string` | `""` | no |
+| azure\_service\_principal\_key | Contents of the JSON file for the Azure service principal | `string` | `""` | no |
 | cloud\_platform | The cloud platform where the cluster is deployed | `string` | n/a | yes |
 | consul\_enabled | Bool to enable consul | `bool` | `true` | no |
 | elasticsearch\_enabled | Bool to enable elasticsearch | `bool` | `true` | no |
+| external\_dns\_enabled | Bool to enable external DNS controller | `bool` | `true` | no |
+| google\_project | Name of GCP project | `string` | `""` | no |
+| google\_service\_account\_key | Contents of the JSON file for the GCP service account | `string` | `""` | no |
 | grafana\_subdomain | The subdomain for Grafana | `string` | `"grafana"` | no |
 | prometheus\_enabled | Bool to enable prometheus | `bool` | `true` | no |
 | prometheus\_subdomain | The subdomain for Prometheus | `string` | `"prometheus"` | no |

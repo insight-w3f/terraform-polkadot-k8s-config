@@ -1,0 +1,21 @@
+provider: ${provider}
+
+domainFilters: ["${domain}"]
+
+sources: ["ingress"]
+
+aws:
+  region: ${region}
+  zoneType: ${zone_type}
+
+azure:
+  secretName: "azure-credentials"
+  resourceGroup: ${azure_resource_group}
+
+google:
+  project: ${google_project}
+  serviceAccountSecret: "gcp-credentials"
+  serviceAccountSecretKey: "credentials"
+
+metrics:
+  enabled: true
