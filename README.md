@@ -63,6 +63,7 @@ No requirements.
 | consul\_enabled | Bool to enable consul | `bool` | `true` | no |
 | elasticsearch\_enabled | Bool to enable elasticsearch | `bool` | `true` | no |
 | grafana\_subdomain | The subdomain for Grafana | `string` | `"grafana"` | no |
+| nginx\_ingress\_enabled | Bool to enable nginx ingress | `bool` | `true` | no |
 | prometheus\_enabled | Bool to enable prometheus | `bool` | `true` | no |
 | prometheus\_subdomain | The subdomain for Prometheus | `string` | `"prometheus"` | no |
 | region | The region where the cluster is deployed | `string` | n/a | yes |

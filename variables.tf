@@ -28,8 +28,8 @@ variable "prometheus_enabled" {
 
 variable "nginx_ingress_enabled" {
   description = "Bool to enable nginx ingress"
-  type = bool
-  default = true
+  type        = bool
+  default     = true
 }
 
 variable "region" {
