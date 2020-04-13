@@ -28,6 +28,12 @@ variable "prometheus_enabled" {
 
 variable "nginx_ingress_enabled" {
   description = "Bool to enable nginx ingress"
+  type = bool
+  default = true
+}
+
+variable "external_dns_enabled" {
+  description = "Bool to enable external DNS controller"
   type        = bool
   default     = true
 }
@@ -69,4 +75,28 @@ variable "prometheus_subdomain" {
 variable "root_domain_name" {
   description = "The root domain name"
   type        = string
+}
+
+variable "azure_service_principal_key" {
+  description = "Contents of the JSON file for the Azure service principal"
+  type        = string
+  default     = ""
+}
+
+variable "azure_resource_group" {
+  description = "The Azure resource group"
+  type        = string
+  default     = ""
+}
+
+variable "google_project" {
+  description = "Name of GCP project"
+  type        = string
+  default     = ""
+}
+
+variable "google_service_account_key" {
+  description = "Contents of the JSON file for the GCP service account"
+  type        = string
+  default     = ""
 }
