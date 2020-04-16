@@ -106,3 +106,9 @@ variable "do_token" {
   type        = string
   default     = ""
 }
+
+variable "lb_endpoint" {
+  description = "URI/IP to the load balancer endpoint"
+  type        = string
+  default     = ""
+}
