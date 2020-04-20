@@ -50,6 +50,7 @@ No requirements.
 
 | Name | Version |
 |------|---------|
+| aws | n/a |
 | helm | n/a |
 | kubernetes | n/a |
 | template | n/a |
@@ -60,6 +61,9 @@ No requirements.
 |------|-------------|------|---------|:--------:|
 | alertmanager\_subdomain | The subdomain for AlertManager | `string` | `"alertmanager"` | no |
 | all\_enabled | Bool to enable all services | `bool` | `true` | no |
+| aws\_access\_key | AWS access key | `string` | `""` | no |
+| aws\_secret\_key | AWS secret key | `string` | `""` | no |
+| aws\_worker\_arn | ARN for EKS worker nodes | `string` | `""` | no |
 | azure\_resource\_group | The Azure resource group | `string` | `""` | no |
 | azure\_service\_principal\_key | Contents of the JSON file for the Azure service principal | `string` | `""` | no |
 | cloud\_platform | The cloud platform where the cluster is deployed | `string` | n/a | yes |
@@ -77,6 +81,7 @@ No requirements.
 | region | The region where the cluster is deployed | `string` | n/a | yes |
 | root\_domain\_name | The root domain name | `string` | n/a | yes |
 | slack\_api\_key | Your Slack API key to receive alerts | `string` | `""` | no |
+| wait\_on | Variable to trick TF into waiting for everything else to finish | `string` | `""` | no |
 
 ## Outputs
 

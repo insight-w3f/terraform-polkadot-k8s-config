@@ -112,3 +112,27 @@ variable "lb_endpoint" {
   type        = string
   default     = ""
 }
+
+variable "aws_access_key" {
+  description = "AWS access key"
+  type        = string
+  default     = ""
+}
+
+variable "aws_secret_key" {
+  description = "AWS secret key"
+  type        = string
+  default     = ""
+}
+
+variable "aws_worker_arn" {
+  description = "ARN for EKS worker nodes"
+  type        = string
+  default     = ""
+}
+
+variable "wait_on" {
+  description = "Variable to trick TF into waiting for everything else to finish"
+  type        = string
+  default     = ""
+}

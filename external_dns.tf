@@ -9,6 +9,7 @@ data "template_file" "external_dns" {
     google_project       = var.cloud_platform == "gcp" ? var.google_project : ""
     azure_resource_group = var.cloud_platform == "azure" ? var.azure_resource_group : ""
     do_token             = var.cloud_platform == "do" ? var.do_token : ""
+    aws_policy           = var.cloud_platform == "aws" ? aws_iam_role.external_dns[0].arn : ""
   }
 }
 
@@ -20,4 +21,59 @@ resource "helm_release" "external_dns" {
   namespace  = "kube-system"
 
   values = [data.template_file.external_dns.rendered]
+}
+
+resource "aws_iam_role" "external_dns" {
+  count              = var.cloud_platform == "aws" ? 1 : 0
+  name               = "external-dns"
+  assume_role_policy = data.aws_iam_policy_document.assume[0].json
+}
+
+resource "aws_iam_role_policy_attachment" "external_dns" {
+  count      = var.cloud_platform == "aws" ? 1 : 0
+  policy_arn = aws_iam_policy.dns_policy[0].arn
+  role       = aws_iam_role.external_dns[0].id
+}
+
+resource "aws_iam_policy" "dns_policy" {
+  count  = var.cloud_platform == "aws" ? 1 : 0
+  policy = data.aws_iam_policy_document.dns_policy[0].json
+}
+
+data "aws_iam_policy_document" "assume" {
+  count = var.cloud_platform == "aws" ? 1 : 0
+
+  statement {
+    actions = ["sts:AssumeRole"]
+
+    principals {
+      identifiers = ["ec2.amazonaws.com"]
+      type        = "Service"
+    }
+  }
+
+  statement {
+    actions = ["sts:AssumeRole"]
+
+    principals {
+      identifiers = [var.aws_worker_arn]
+      type        = "AWS"
+    }
+  }
+}
+
+data "aws_iam_policy_document" "dns_policy" {
+  count = var.cloud_platform == "aws" ? 1 : 0
+  statement {
+    actions   = ["route53:ChangeResourceRecordSets"]
+    effect    = "Allow"
+    resources = ["arn:aws:route53:::hostedzone/*"]
+  }
+
+  statement {
+    actions = ["route53:ListHostedZones",
+    "route53:ListResourceRecordSets"]
+    effect    = "Allow"
+    resources = ["*"]
+  }
 }
