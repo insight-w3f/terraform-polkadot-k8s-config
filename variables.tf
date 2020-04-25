@@ -119,6 +119,24 @@ variable "kubeconfig" {
   default     = ""
 }
 
+variable "aws_access_key" {
+  description = "AWS access key"
+  type        = string
+  default     = ""
+}
+
+variable "aws_secret_key" {
+  description = "AWS secret key"
+  type        = string
+  default     = ""
+}
+
+variable "aws_worker_arn" {
+  description = "ARN for EKS worker nodes"
+  type        = string
+  default     = ""
+}
+
 variable "cert_manager_enabled" {
   description = "Bool to enable external cert-manager"
   type        = bool
@@ -146,4 +164,10 @@ variable "cert_manager_issuer_secret_name" {
   description = "k8s secret name for this issuer"
   type        = string
   default     = "letsencrypt-issuer-account-key"
+}
+
+variable "wait_on" {
+  description = "Variable to trick TF into waiting for everything else to finish"
+  type        = string
+  default     = ""
 }
