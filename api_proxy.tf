@@ -9,6 +9,7 @@ resource "kubernetes_service" "api_proxy" {
 }
 
 resource "kubernetes_ingress" "api_proxy" {
+  count = var.cert_manager_enabled ? 0 : 1
   metadata {
     name = "api-proxy-ingress"
     annotations = {
@@ -16,6 +17,35 @@ resource "kubernetes_ingress" "api_proxy" {
     }
   }
   spec {
+    rule {
+      host = "api.${var.region}.${var.cloud_platform}.polkadot.${var.root_domain_name}"
+      http {
+        path {
+          backend {
+            service_name = "api-proxy"
+            service_port = 9933
+          }
+          path = "/v0"
+        }
+      }
+    }
+  }
+}
+
+resource "kubernetes_ingress" "api_proxy_ssl" {
+  count = var.cert_manager_enabled ? 1 : 0
+  metadata {
+    name = "api-proxy-ingress"
+    annotations = {
+      "kubernetes.io/ingress.class" = "nginx"
+      "cert-manager.io/cluster-issuer" : var.issuer_name
+    }
+  }
+  spec {
+    tls {
+      hosts       = ["api.${var.region}.${var.cloud_platform}.polkadot.${var.root_domain_name}"]
+      secret_name = "api-ingress-tls"
+    }
     rule {
       host = "api.${var.region}.${var.cloud_platform}.polkadot.${var.root_domain_name}"
       http {
