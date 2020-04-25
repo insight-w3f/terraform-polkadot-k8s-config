@@ -1,5 +1,9 @@
+locals {
+  which_template = local.cert_manager_enabled ? "${path.module}/prometheus_ssl.yaml" : "${path.module}/prometheus.yaml"
+}
+
 data "template_file" "prometheus" {
-  template = yamlencode(yamldecode(file("${path.module}/prometheus.yaml")))
+  template = yamlencode(yamldecode(file(local.which_template)))
   vars = {
     region                 = var.region
     cloud_platform         = var.cloud_platform
@@ -8,10 +12,9 @@ data "template_file" "prometheus" {
     grafana_subdomain      = var.grafana_subdomain
     prometheus_subdomain   = var.prometheus_subdomain
     root_domain_name       = var.root_domain_name
+    name_of_cluster_issuer = var.issuer_name
   }
 }
-
-
 
 resource "helm_release" "prometheus" {
   count      = var.prometheus_enabled ? 1 : 0

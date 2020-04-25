@@ -52,16 +52,21 @@ No requirements.
 |------|---------|
 | helm | n/a |
 | kubernetes | n/a |
+| local | n/a |
+| null | n/a |
 | template | n/a |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| acme\_server | Full URI of the certificate issuing server | `string` | `"https://acme-staging-v02.api.letsencrypt.org/directory"` | no |
 | alertmanager\_subdomain | The subdomain for AlertManager | `string` | `"alertmanager"` | no |
 | all\_enabled | Bool to enable all services | `bool` | `true` | no |
 | azure\_resource\_group | The Azure resource group | `string` | `""` | no |
 | azure\_service\_principal\_key | Contents of the JSON file for the Azure service principal | `string` | `""` | no |
+| cert\_manager\_enabled | Bool to enable external cert-manager | `bool` | `true` | no |
+| cert\_manager\_issuer\_secret\_name | k8s secret name for this issuer | `string` | `"letsencrypt-issuer-account-key"` | no |
 | cloud\_platform | The cloud platform where the cluster is deployed | `string` | n/a | yes |
 | consul\_enabled | Bool to enable consul | `bool` | `true` | no |
 | do\_token | The DO API token | `string` | `""` | no |
@@ -70,6 +75,8 @@ No requirements.
 | google\_project | Name of GCP project | `string` | `""` | no |
 | google\_service\_account\_key | Contents of the JSON file for the GCP service account | `string` | `""` | no |
 | grafana\_subdomain | The subdomain for Grafana | `string` | `"grafana"` | no |
+| issuer\_name | k8s resource name for your certificate issuer (e.g. letsencrypt) | `string` | `"letsencrypt"` | no |
+| kubeconfig | The base64-encoded kubeconfig file contents for the cluster to apply CRDs to | `string` | `""` | no |
 | lb\_endpoint | URI/IP to the load balancer endpoint | `string` | `""` | no |
 | nginx\_ingress\_enabled | Bool to enable nginx ingress | `bool` | `true` | no |
 | prometheus\_enabled | Bool to enable prometheus | `bool` | `true` | no |
@@ -77,6 +84,7 @@ No requirements.
 | region | The region where the cluster is deployed | `string` | n/a | yes |
 | root\_domain\_name | The root domain name | `string` | n/a | yes |
 | slack\_api\_key | Your Slack API key to receive alerts | `string` | `""` | no |
+| user\_email | Email address of user to be notifed by certificate issuer about expiry, etc. | `string` | `""` | no |
 
 ## Outputs
 
