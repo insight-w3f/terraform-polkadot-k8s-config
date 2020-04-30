@@ -171,3 +171,15 @@ variable "wait_on" {
   type        = string
   default     = ""
 }
+
+variable "prometheus_user" {
+  description = "Username used for Prometheus authentication"
+  type        = string
+  default     = "node_exporter_user"
+}
+
+variable "prometheus_password" {
+  description = "Password used for Prometheus authentication"
+  type        = string
+  default     = "node_exporter_password"
+}

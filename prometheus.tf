@@ -13,6 +13,8 @@ data "template_file" "prometheus" {
     prometheus_subdomain   = var.prometheus_subdomain
     root_domain_name       = var.root_domain_name
     name_of_cluster_issuer = var.issuer_name
+    prometheus_user        = var.prometheus_user
+    prometheus_password    = var.prometheus_password
   }
 }
 

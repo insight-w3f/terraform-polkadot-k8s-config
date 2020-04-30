@@ -198,7 +198,7 @@ prometheus:
         scrape_timeout:  10s
         consul_sd_configs:
           - server:   consul.service.consul:8500
-            datacenter: us-east-1
+            datacenter: ${region}
             services: [consul]
             allow_stale: true
             refresh_interval: 5m
@@ -215,15 +215,18 @@ prometheus:
             separator:     ':'
             regex:         (.*):(8300)
             target_label:  __address__
-            replacement:   ${1}:8500
+            replacement:   $${1}:8500
 
       - job_name: host-prometheus
         metrics_path: /metrics
         scrape_interval: 10s
         scrape_timeout:  10s
+        basic_auth:
+            username: ${prometheus_user}
+            password: ${prometheus_password}
         consul_sd_configs:
           - server:   consul.service.consul:8500
-            datacenter: us-east-1
+            datacenter: ${region}
             services: [consul_node_exporter]
             allow_stale: true
             refresh_interval: 5m

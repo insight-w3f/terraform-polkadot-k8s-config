@@ -84,7 +84,9 @@ No requirements.
 | lb\_endpoint | URI/IP to the load balancer endpoint | `string` | `""` | no |
 | nginx\_ingress\_enabled | Bool to enable nginx ingress | `bool` | `true` | no |
 | prometheus\_enabled | Bool to enable prometheus | `bool` | `true` | no |
+| prometheus\_password | Password used for Prometheus authentication | `string` | `"node_exporter_password"` | no |
 | prometheus\_subdomain | The subdomain for Prometheus | `string` | `"prometheus"` | no |
+| prometheus\_user | Username used for Prometheus authentication | `string` | `"node_exporter_user"` | no |
 | region | The region where the cluster is deployed | `string` | n/a | yes |
 | root\_domain\_name | The root domain name | `string` | n/a | yes |
 | slack\_api\_key | Your Slack API key to receive alerts | `string` | `""` | no |
