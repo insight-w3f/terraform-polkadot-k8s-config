@@ -168,7 +168,6 @@ variable "cert_manager_issuer_secret_name" {
 
 variable "wait_on" {
   description = "Variable to trick TF into waiting for everything else to finish"
-  type        = string
   default     = ""
 }
 
