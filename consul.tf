@@ -19,7 +19,7 @@ resource "helm_release" "consul" {
 resource "null_resource" "kube_dns_stub" {
   count = var.cloud_platform == "gcp" ? 1 : 0
   provisioner "local-exec" {
-    command = "${path.module}/scripts/create_consul_stub.sh"
+    command = "${path.module}/scripts/create_consul_stub_gcp.sh"
     interpreter = [
       "/bin/bash",
     "-c"]
@@ -35,6 +35,21 @@ resource "null_resource" "core_dns_stub" {
   count = var.cloud_platform == "aws" ? 1 : 0
   provisioner "local-exec" {
     command = "${path.module}/scripts/create_consul_stub_coredns.sh"
+    interpreter = [
+      "/bin/bash",
+    "-c"]
+    environment = {
+      KUBECONFIG = var.kubeconfig
+      MODPATH    = path.module
+    }
+  }
+  depends_on = [helm_release.consul]
+}
+
+resource "null_resource" "core_dns_azure_stub" {
+  count = var.cloud_platform == "azure" ? 1 : 0
+  provisioner "local-exec" {
+    command = "${path.module}/scripts/create_consul_stub_azure.sh"
     interpreter = [
       "/bin/bash",
     "-c"]
