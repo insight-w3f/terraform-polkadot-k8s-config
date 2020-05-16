@@ -7,7 +7,7 @@ data "template_file" "prometheus" {
   vars = {
     region                 = var.region
     cloud_platform         = var.cloud_platform
-    slack_api_key          = var.slack_api_key
+    slack_api_key          = var.slack_api_key == "" ? "https://slack.com/api" : var.slack_api_key
     alertmanager_subdomain = var.alertmanager_subdomain
     grafana_subdomain      = var.grafana_subdomain
     prometheus_subdomain   = var.prometheus_subdomain
