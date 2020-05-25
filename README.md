@@ -73,6 +73,7 @@ No requirements.
 | cert\_manager\_issuer\_secret\_name | k8s secret name for this issuer | `string` | `"letsencrypt-issuer-account-key"` | no |
 | cloud\_platform | The cloud platform where the cluster is deployed | `string` | n/a | yes |
 | consul\_enabled | Bool to enable consul | `bool` | `true` | no |
+| deployment\_domain\_name | The domain name that will host the deployment | `string` | `""` | no |
 | do\_token | The DO API token | `string` | `""` | no |
 | elasticsearch\_enabled | Bool to enable elasticsearch | `bool` | `true` | no |
 | external\_dns\_enabled | Bool to enable external DNS controller | `bool` | `true` | no |
@@ -88,7 +89,6 @@ No requirements.
 | prometheus\_subdomain | The subdomain for Prometheus | `string` | `"prometheus"` | no |
 | prometheus\_user | Username used for Prometheus authentication | `string` | `"node_exporter_user"` | no |
 | region | The region where the cluster is deployed | `string` | n/a | yes |
-| root\_domain\_name | The root domain name | `string` | n/a | yes |
 | slack\_api\_key | Your Slack API key to receive alerts | `string` | `""` | no |
 | user\_email | Email address of user to be notifed by certificate issuer about expiry, etc. | `string` | `""` | no |
 | wait\_on | Variable to trick TF into waiting for everything else to finish | `string` | `""` | no |

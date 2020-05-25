@@ -18,7 +18,7 @@ resource "kubernetes_ingress" "api_proxy" {
   }
   spec {
     rule {
-      host = "api.${var.region}.${var.cloud_platform}.polkadot.${var.root_domain_name}"
+      host = "api.${var.deployment_domain_name}"
       http {
         path {
           backend {
@@ -26,6 +26,13 @@ resource "kubernetes_ingress" "api_proxy" {
             service_port = 9933
           }
           path = "/v0"
+        }
+        path {
+          backend {
+            service_name = "api-proxy"
+            service_port = 9944
+          }
+          path = "/"
         }
       }
     }
@@ -43,11 +50,11 @@ resource "kubernetes_ingress" "api_proxy_ssl" {
   }
   spec {
     tls {
-      hosts       = ["api.${var.region}.${var.cloud_platform}.polkadot.${var.root_domain_name}"]
+      hosts       = ["api.${var.deployment_domain_name}"]
       secret_name = "api-ingress-tls"
     }
     rule {
-      host = "api.${var.region}.${var.cloud_platform}.polkadot.${var.root_domain_name}"
+      host = "api.${var.deployment_domain_name}"
       http {
         path {
           backend {
@@ -55,6 +62,13 @@ resource "kubernetes_ingress" "api_proxy_ssl" {
             service_port = 9933
           }
           path = "/v0"
+        }
+        path {
+          backend {
+            service_name = "api-proxy"
+            service_port = 9944
+          }
+          path = "/"
         }
       }
     }

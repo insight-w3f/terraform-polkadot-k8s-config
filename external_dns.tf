@@ -2,7 +2,7 @@
 data "template_file" "external_dns" {
   template = yamlencode(yamldecode(file("${path.module}/external_dns.yaml")))
   vars = {
-    domain               = "${var.region}.${var.cloud_platform}.polkadot.${var.root_domain_name}"
+    domain               = var.deployment_domain_name
     region               = var.cloud_platform == "aws" ? var.region : ""
     zone_type            = var.cloud_platform == "aws" ? "public" : ""
     provider             = var.cloud_platform == "gcp" ? "google" : var.cloud_platform == "do" ? "digitalocean" : var.cloud_platform

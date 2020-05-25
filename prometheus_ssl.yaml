@@ -38,7 +38,7 @@ alertmanager:
               {{ end }}
       - name: 'null'
   alertmanagerSpec:
-    externalUrl: "http://${alertmanager_subdomain}.${region}.${cloud_platform}.polkadot.${root_domain_name}"
+    externalUrl: "http://${alertmanager_subdomain}.${root_domain_name}"
   ingress:
     annotations:
       ingress.kubernetes.io/rewrite-target: /
@@ -48,11 +48,11 @@ alertmanager:
       cert-manager.io/cluster-issuer: ${name_of_cluster_issuer}
     enabled: true
     hosts:
-      - ${alertmanager_subdomain}.${region}.${cloud_platform}.polkadot.${root_domain_name}
+      - ${alertmanager_subdomain}.${root_domain_name}
     tls:
     - secretName: alertmanager-tls
       hosts:
-      - ${alertmanager_subdomain}.${region}.${cloud_platform}.polkadot.${root_domain_name}
+      - ${alertmanager_subdomain}.${root_domain_name}
   service:
     type: NodePort
 
@@ -67,11 +67,11 @@ grafana:
       cert-manager.io/cluster-issuer: ${name_of_cluster_issuer}
     enabled: true
     hosts:
-      - ${grafana_subdomain}.${region}.${cloud_platform}.polkadot.${root_domain_name}
+      - ${grafana_subdomain}.${root_domain_name}
     tls:
       - secretName: grafana-tls
         hosts:
-          - ${grafana_subdomain}.${region}.${cloud_platform}.polkadot.${root_domain_name}
+          - ${grafana_subdomain}.${root_domain_name}
   service:
     type: NodePort
 
@@ -172,11 +172,11 @@ prometheus:
       cert-manager.io/cluster-issuer: ${name_of_cluster_issuer}
     enabled: true
     hosts:
-      - ${prometheus_subdomain}.${region}.${cloud_platform}.polkadot.${root_domain_name}
+      - ${prometheus_subdomain}.${root_domain_name}
     tls:
       - secretName: prometheus-tls
         hosts:
-          - ${prometheus_subdomain}.${region}.${cloud_platform}.polkadot.${root_domain_name}
+          - ${prometheus_subdomain}.${root_domain_name}
   service:
     type: NodePort
   prometheusSpec:
@@ -187,7 +187,7 @@ prometheus:
           resources:
             requests:
               storage: 50Gi
-    externalUrl: "http://${prometheus_subdomain}.${region}.${cloud_platform}.polkadot.${root_domain_name}"
+    externalUrl: "http://${prometheus_subdomain}.${root_domain_name}"
     additionalScrapeConfigs:
       - job_name: consul
         metrics_path: /v1/agent/metrics

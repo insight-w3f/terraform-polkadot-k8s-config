@@ -6,18 +6,18 @@ data "template_file" "cert_manager" {
   }
 }
 
-resource "null_resource" "cert_manager_apply_crds" {
-  count = local.cert_manager_enabled ? 1 : 0
-  provisioner "local-exec" {
-    command = "kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.14.1/cert-manager.crds.yaml --kubeconfig <(echo $KUBECONFIG | base64 --decode)"
-    interpreter = [
-      "/bin/bash",
-    "-c"]
-    environment = {
-      KUBECONFIG = var.kubeconfig
-    }
-  }
-}
+//resource "null_resource" "cert_manager_apply_crds" {
+//  count = local.cert_manager_enabled ? 1 : 0
+//  provisioner "local-exec" {
+//    command = "kubectl apply --validate=false -f https://github.com/jetstack/cert-manager/releases/download/v0.14.1/cert-manager.crds.yaml --kubeconfig <(echo $KUBECONFIG | base64 --decode)"
+//    interpreter = [
+//      "/bin/bash",
+//    "-c"]
+//    environment = {
+//      KUBECONFIG = var.kubeconfig
+//    }
+//  }
+//}
 
 resource "helm_release" "cert_manager" {
   count      = local.cert_manager_enabled ? 1 : 0
@@ -28,7 +28,7 @@ resource "helm_release" "cert_manager" {
 
   values = [data.template_file.cert_manager[0].rendered]
 
-  depends_on = [kubernetes_namespace.cert_manager, null_resource.cert_manager_apply_crds]
+  depends_on = [kubernetes_namespace.cert_manager]
 }
 
 resource "kubernetes_namespace" "cert_manager" {
@@ -66,5 +66,5 @@ resource "null_resource" "cert_manager_apply_issuer_crd" {
       KUBECONFIG = var.kubeconfig
     }
   }
-  depends_on = [helm_release.cert_manager, null_resource.cert_manager_apply_crds]
+  depends_on = [helm_release.cert_manager]
 }

@@ -72,9 +72,10 @@ variable "prometheus_subdomain" {
   default     = "prometheus"
 }
 
-variable "root_domain_name" {
-  description = "The root domain name"
+variable "deployment_domain_name" {
+  description = "The domain name that will host the deployment"
   type        = string
+  default     = ""
 }
 
 variable "azure_service_principal_key" {
