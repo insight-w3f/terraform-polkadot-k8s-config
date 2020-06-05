@@ -11,7 +11,10 @@ jobs:
           command: |
             wget --quiet https://releases.hashicorp.com/terraform/0.12.20/terraform_0.12.20_linux_amd64.zip
             sudo unzip terraform_0.12.20_linux_amd64.zip -d /usr/local/bin
-      - go/test
+      - run:
+          command: go test ~/project/test -v -timeout 60m
+          no_output_timeout: 60m
+          name: "go test"
 
 orbs:
   go: circleci/go@0.2.0
