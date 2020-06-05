@@ -15,6 +15,13 @@ jobs:
           command: go test ~/project/test -v -timeout 60m
           no_output_timeout: 60m
           name: "go test"
+      - run:
+          name: Destroy on failure
+          command: |
+            wget https://github.com/gruntwork-io/cloud-nuke/releases/download/v0.1.18/cloud-nuke_linux_amd64 -O ./cloud-nuke
+            chmod +x ./cloud-nuke
+            ./cloud-nuke aws --force
+          when: on_fail
 
 orbs:
   go: circleci/go@0.2.0
