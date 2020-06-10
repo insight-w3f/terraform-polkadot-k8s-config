@@ -7,11 +7,22 @@ provider "aws" {
 }
 
 data "aws_eks_cluster" "cluster" {
-  name = module.eks.cluster_id
+  name       = module.eks.cluster_id
+  depends_on = [null_resource.wait_for_cluster]
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  name = module.eks.cluster_id
+  name       = module.eks.cluster_id
+  depends_on = [null_resource.wait_for_cluster]
+}
+
+resource "null_resource" "wait_for_cluster" {
+  provisioner "local-exec" {
+    command = "until curl -k -s $ENDPOINT/healthz > /dev/null; do sleep 4; done"
+    environment = {
+      ENDPOINT = module.eks.cluster_endpoint
+    }
+  }
 }
 
 provider "kubernetes" {
