@@ -42,9 +42,10 @@ provider "helm" {
 }
 
 module "network" {
-  source      = "github.com/insight-w3f/terraform-polkadot-aws-network.git?ref=master"
-  num_azs     = 3
-  k8s_enabled = true
+  source           = "github.com/insight-w3f/terraform-polkadot-aws-network.git?ref=master"
+  num_azs          = 3
+  k8s_enabled      = true
+  root_domain_name = "test.internal"
 }
 
 module "eks" {
@@ -55,8 +56,16 @@ module "eks" {
 }
 
 module "defaults" {
-  source             = "../.."
-  prometheus_enabled = true
-  cloud_platform     = "aws"
-  region             = var.aws_region
+  source                 = "../.."
+  all_enabled            = false
+  consul_enabled         = true
+  prometheus_enabled     = true
+  nginx_ingress_enabled  = true
+  elasticsearch_enabled  = true
+  external_dns_enabled   = false
+  cert_manager_enabled   = false
+  cloud_platform         = "aws"
+  region                 = var.aws_region
+  deployment_domain_name = module.network.root_domain_name
+  lb_endpoint            = "asg.internal"
 }
