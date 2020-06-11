@@ -63,4 +63,5 @@ module "defaults" {
   region                 = var.aws_region
   deployment_domain_name = module.network.root_domain_name
   lb_endpoint            = "asg.internal"
+  aws_worker_arn         = module.eks.worker_iam_role_arn
 }
