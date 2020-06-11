@@ -24,7 +24,8 @@ provider "kubernetes" {
   host                   = module.eks.cluster_endpoint
   cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
   token                  = data.aws_eks_cluster_auth.cluster.token
-  load_config_file       = false
+  config_path            = module.eks.kubeconfig_filename
+  load_config_file       = true
 }
 
 provider "helm" {
@@ -32,7 +33,8 @@ provider "helm" {
     host                   = module.eks.cluster_endpoint
     cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
     token                  = data.aws_eks_cluster_auth.cluster.token
-    load_config_file       = false
+    config_path            = module.eks.kubeconfig_filename
+    load_config_file       = true
   }
 }
 
@@ -44,10 +46,15 @@ module "network" {
 }
 
 module "eks" {
-  source            = "github.com/insight-w3f/terraform-polkadot-aws-k8s-cluster.git?ref=master"
-  security_group_id = module.network.k8s_security_group_id
-  subnet_ids        = slice(module.network.public_subnets, 0, 3)
-  vpc_id            = module.network.vpc_id
+  source                        = "github.com/insight-w3f/terraform-polkadot-aws-k8s-cluster.git?ref=master"
+  security_group_id             = module.network.k8s_security_group_id
+  subnet_ids                    = slice(module.network.public_subnets, 0, 3)
+  vpc_id                        = module.network.vpc_id
+  cluster_autoscale             = true
+  cluster_autoscale_max_workers = 10
+  cluster_autoscale_min_workers = 3
+  num_workers                   = 3
+  worker_instance_type          = "m5.large"
 }
 
 module "defaults" {
