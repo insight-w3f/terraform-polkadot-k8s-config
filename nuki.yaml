@@ -1,0 +1,7 @@
+tf_variables_:
+  type: terraform_variables
+  variables_file: variables.tf
+  merge: true
+  var_list:
+    - prometheus_user
+    - prometheus_password
