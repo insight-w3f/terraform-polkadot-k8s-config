@@ -120,18 +120,6 @@ variable "kubeconfig" {
   default     = ""
 }
 
-variable "aws_access_key" {
-  description = "AWS access key"
-  type        = string
-  default     = ""
-}
-
-variable "aws_secret_key" {
-  description = "AWS secret key"
-  type        = string
-  default     = ""
-}
-
 variable "aws_worker_arn" {
   description = "ARN for EKS worker nodes"
   type        = string
@@ -161,6 +149,7 @@ variable "acme_server" {
   type        = string
   default     = "https://acme-staging-v02.api.letsencrypt.org/directory"
 }
+
 variable "cert_manager_issuer_secret_name" {
   description = "k8s secret name for this issuer"
   type        = string

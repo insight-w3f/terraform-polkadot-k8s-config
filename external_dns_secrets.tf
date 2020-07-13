@@ -1,14 +1,3 @@
-resource "kubernetes_secret" "aws_credentials" {
-  count = var.cloud_platform == "aws" ? 1 : 0
-  metadata {
-    name      = "aws-credentials"
-    namespace = "kube-system"
-  }
-
-  data = {
-
-  }
-}
 
 resource "kubernetes_secret" "gcp_credentials" {
   count = var.cloud_platform == "gcp" ? 1 : 0
@@ -30,6 +19,6 @@ resource "kubernetes_secret" "azure_credentials" {
   }
 
   data = {
-    "azure.json" = var.azure_service_principal_key
+    "azure.json" = var.azure_service_principatl_key
   }
 }

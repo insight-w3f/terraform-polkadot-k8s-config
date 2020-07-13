@@ -42,10 +42,6 @@ module "this" {
 No issue is creating limit on this module.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-## Requirements
-
-No requirements.
-
 ## Providers
 
 | Name | Version |
@@ -60,12 +56,10 @@ No requirements.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+|------|-------------|------|---------|:-----:|
 | acme\_server | Full URI of the certificate issuing server | `string` | `"https://acme-staging-v02.api.letsencrypt.org/directory"` | no |
 | alertmanager\_subdomain | The subdomain for AlertManager | `string` | `"alertmanager"` | no |
 | all\_enabled | Bool to enable all services | `bool` | `true` | no |
-| aws\_access\_key | AWS access key | `string` | `""` | no |
-| aws\_secret\_key | AWS secret key | `string` | `""` | no |
 | aws\_worker\_arn | ARN for EKS worker nodes | `string` | `""` | no |
 | azure\_resource\_group | The Azure resource group | `string` | `""` | no |
 | azure\_service\_principal\_key | Contents of the JSON file for the Azure service principal | `string` | `""` | no |
