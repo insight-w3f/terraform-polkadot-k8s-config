@@ -19,6 +19,6 @@ resource "kubernetes_secret" "azure_credentials" {
   }
 
   data = {
-    "azure.json" = var.azure_service_principatl_key
+    "azure.json" = var.azure_service_principal_key
   }
 }
