@@ -1,7 +1,29 @@
-tf_variables_:
+
+tf_basic_variables_:
   type: terraform_variables
   variables_file: variables.tf
   merge: true
   var_list:
+    - consul_enabled
+    - elasticsearch_enabled
+    - prometheus_enabled
+    - nginx_ingress_enabled
+    - external_dns_enabled
+    - cert_manager_enabled
+
+tf_prom_variables_:
+  type: terraform_variables
+  variables_file: variables.tf
+  when: "{{ nuki.prometheus_enabled }}"
+  merge: true
+  var_list:
     - prometheus_user
     - prometheus_password
+
+tf_cert_variables_:
+  type: terraform_variables
+  when: "{{ nuki.cert_manager_enabled }}"
+  variables_file: variables.tf
+  merge: true
+  var_list:
+    - user_email
