@@ -1,3 +1,6 @@
+print_:
+  type: print
+  statement: Configuring Polkadot Kubernetes Cluster
 
 tf_basic_variables_:
   type: terraform_variables
