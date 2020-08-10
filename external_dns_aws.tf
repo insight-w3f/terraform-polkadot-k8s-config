@@ -1,6 +1,10 @@
+locals {
+  name = var.id != "" ? "${replace(title(replace(var.id, "-", " ")), " ", "")}ExternalDnsRole" : null
+}
+
 resource "aws_iam_role" "external_dns" {
   count              = var.cloud_platform == "aws" ? 1 : 0
-  name               = "external-dns"
+  name               = local.name
   assume_role_policy = data.aws_iam_policy_document.assume[0].json
 }
 

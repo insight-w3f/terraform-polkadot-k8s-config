@@ -1,3 +1,8 @@
+variable "id" {
+  description = "A unique identifier to each deployment - blank for random pet"
+  type        = string
+  default     = ""
+}
 
 ######
 # svcs

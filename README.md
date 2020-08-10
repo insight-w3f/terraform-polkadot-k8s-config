@@ -74,6 +74,7 @@ No issue is creating limit on this module.
 | google\_project | Name of GCP project | `string` | `""` | no |
 | google\_service\_account\_key | Contents of the JSON file for the GCP service account | `string` | `""` | no |
 | grafana\_subdomain | The subdomain for Grafana | `string` | `"grafana"` | no |
+| id | A unique identifier to each deployment - blank for random pet | `string` | `""` | no |
 | issuer\_name | k8s resource name for your certificate issuer (e.g. letsencrypt) | `string` | `"letsencrypt"` | no |
 | kubeconfig | The base64-encoded kubeconfig file contents for the cluster to apply CRDs to | `string` | `""` | no |
 | lb\_endpoint | URI/IP to the load balancer endpoint | `string` | `""` | no |
