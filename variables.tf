@@ -78,6 +78,12 @@ variable "deployment_domain_name" {
   default     = ""
 }
 
+variable "aggregate_domain_name" {
+  description = "The domain name that will be used for the aggregated endpoint"
+  type        = string
+  default     = ""
+}
+
 variable "azure_service_principal_key" {
   description = "Contents of the JSON file for the Azure service principal"
   type        = string

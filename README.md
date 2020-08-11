@@ -42,6 +42,10 @@ module "this" {
 No issue is creating limit on this module.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+No requirements.
+
 ## Providers
 
 | Name | Version |
@@ -56,8 +60,9 @@ No issue is creating limit on this module.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:-----:|
+|------|-------------|------|---------|:--------:|
 | acme\_server | Full URI of the certificate issuing server | `string` | `"https://acme-staging-v02.api.letsencrypt.org/directory"` | no |
+| aggregate\_domain\_name | The domain name that will be used for the aggregated endpoint | `string` | `""` | no |
 | alertmanager\_subdomain | The subdomain for AlertManager | `string` | `"alertmanager"` | no |
 | all\_enabled | Bool to enable all services | `bool` | `true` | no |
 | aws\_worker\_arn | ARN for EKS worker nodes | `string` | `""` | no |
