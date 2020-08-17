@@ -57,6 +57,11 @@ resource "local_file" "issuer_crd" {
 
 resource "null_resource" "cert_manager_apply_issuer_crd" {
   count = local.cert_manager_enabled ? 1 : 0
+
+  triggers = {
+    issuer_crd = local_file.issuer_crd.content
+  }
+
   provisioner "local-exec" {
     command = "kubectl apply -f ${local_file.issuer_crd[0].filename} --kubeconfig <(echo $KUBECONFIG | base64 --decode)"
     interpreter = [
