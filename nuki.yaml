@@ -2,6 +2,34 @@ print_:
   type: print
   statement: Configuring Polkadot Kubernetes Cluster
 
+external_dns_enabled:
+  type: select
+  message: Do you want to kubernetes to manage your DNS records for you?
+  when: "{{ nuki.root_domain is defined }}"
+  choices:
+    - true
+    - false
+
+cert_manager_enabled:
+  type: select
+  message: Do you want to enable SSL certs?
+  choices:
+    - true
+    - false
+
+acme_server_choice_:
+  type: select
+  message: |
+    Do you want to use a real cert or a staging certificate (only for testing)?
+  choices:
+    - https://acme-v02.api.letsencrypt.org/directory: Real certificate
+    - https://acme-staging-v02.api.letsencrypt.org/directory: Staging certificate
+
+acme_server:
+  type: stat
+  input: "{{ nuki.acme_server_choice_ }}"
+  when: "{{ nuki.cert_manager_enabled }}"
+
 tf_basic_variables_:
   type: terraform_variables
   variables_file: variables.tf
@@ -11,8 +39,6 @@ tf_basic_variables_:
     - elasticsearch_enabled
     - prometheus_enabled
     - nginx_ingress_enabled
-    - external_dns_enabled
-    - cert_manager_enabled
 
 tf_prom_variables_:
   type: terraform_variables
