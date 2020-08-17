@@ -21,6 +21,7 @@ acme_server_choice_:
   type: select
   message: |
     Do you want to use a real cert or a staging certificate (only for testing)?
+  when: "{{ nuki.cert_manager_enabled }}"
   choices:
     - https://acme-v02.api.letsencrypt.org/directory: Real certificate
     - https://acme-staging-v02.api.letsencrypt.org/directory: Staging certificate
