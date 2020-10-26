@@ -207,7 +207,7 @@ prometheus:
         scrape_interval: 10s
         scrape_timeout:  10s
         basic_auth:
-          - username: ${prometheus_user}
+            username: ${prometheus_user}
             password: ${prometheus_password}
         consul_sd_configs:
           - server:   consul.service.consul:8500
