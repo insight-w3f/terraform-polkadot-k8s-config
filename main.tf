@@ -10,7 +10,7 @@ locals {
 
 data "helm_repository" "stable" {
   name = "stable"
-  url  = "helm init --stable-repo-url https://charts.helm.sh/stable"
+  url  = "https://charts.helm.sh/stable"
 }
 
 data "helm_repository" "bitnami" {
