@@ -1,10 +1,18 @@
 print_:
   type: print
   statement: Configuring Polkadot Kubernetes Cluster
+  
+choose_defaults_:
+  type: select
+  message: Use default settings or prompt for choices?
+  choices:
+    true: Use the default
+    false: Prompt for choices
 
 tf_basic_variables_:
   type: terraform_variables
   variables_file: variables.tf
+  use_default: "{{ choose_defaults_ }}"
   merge: true
   var_list:
     - consul_enabled
@@ -17,6 +25,7 @@ tf_basic_variables_:
 tf_prom_variables_:
   type: terraform_variables
   variables_file: variables.tf
+  use_default: "{{ choose_defaults_ }}"
   when: "{{ prometheus_enabled }}"
   merge: true
   var_list:
@@ -25,6 +34,7 @@ tf_prom_variables_:
 
 tf_cert_variables_:
   type: terraform_variables
+  use_default: "{{ choose_defaults_ }}"
   when: "{{ cert_manager_enabled }}"
   variables_file: variables.tf
   merge: true
